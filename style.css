@@ -34,6 +34,7 @@ main {
   gap: 12px;
   border-bottom: 2px solid #ddd;
   margin-bottom: 25px;
+  flex-wrap: wrap;
 }
 .tab {
   background: #fff;
@@ -46,6 +47,8 @@ main {
   border-bottom: none;
   color: #34495e;
   transition: background-color 0.3s, border-color 0.3s;
+  flex: 1 1 auto;
+  min-width: 100px;
 }
 .tab.active {
   background-color: #34495e;
@@ -119,27 +122,20 @@ button:focus {
 .btn-secondary:focus {
   background-color: #95a5a6;
 }
-.btn-disabled {
-  background-color: #95a5a6 !important;
+button:disabled,
+button[disabled] {
+  background-color: #ccc;
   cursor: not-allowed;
 }
-.flow-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-/* Formulário Endereço */
+/* Formulário */
 form label {
   display: block;
-  margin-top: 15px;
+  margin: 15px 0 5px;
   font-weight: 600;
-  color: #34495e;
 }
 form input {
   width: 100%;
-  padding: 8px 12px;
-  margin-top: 5px;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 1rem;
@@ -149,82 +145,63 @@ form input:focus {
   border-color: #2980b9;
   outline: none;
 }
-/* Política */
 .policy {
-  background-color: #ecf0f1;
-  border-radius: 8px;
-  padding: 15px;
   margin-top: 25px;
+  background-color: #f0f5f8;
+  border-left: 5px solid #2980b9;
+  padding: 15px 20px;
   font-size: 0.9rem;
   color: #555;
+  border-radius: 5px;
 }
 .policy h3 {
   margin-top: 0;
-  color: #2980b9;
 }
-.policy a {
-  color: #2980b9;
-  text-decoration: underline;
+.flow-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-/* Resumo */
+/* Resumo da compra */
 .summary ul {
-  list-style: none;
+  list-style-type: none;
   padding-left: 0;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.summary ul li {
-  padding: 6px 0;
-  border-bottom: 1px solid #ddd;
-  color: #34495e;
+.summary li {
+  margin-bottom: 6px;
+  font-weight: 600;
 }
-.summary ul li:last-child {
-  border-bottom: none;
-}
-.total {
-  font-weight: 700;
+.summary .total {
   font-size: 1.2rem;
-  margin-top: 12px;
+  font-weight: 700;
+  margin-top: 10px;
   color: #27ae60;
 }
-/* Sobre */
-.about-text {
-  font-size: 1rem;
+pre {
+  background-color: #f8f8f8;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.about-text,
+.contact-info {
+  font-size: 1.1rem;
   line-height: 1.5;
-  color: #34495e;
+  color: #444;
 }
-/* Contato */
-.contact-info a {
-  color: #2980b9;
-  text-decoration: none;
-}
-.contact-info a:hover,
-.contact-info a:focus {
-  text-decoration: underline;
-}
-/* Footer */
 footer {
   text-align: center;
+  padding: 20px 10px;
   font-size: 0.9rem;
-  padding: 20px 0;
-  color: #777;
-  background-color: #f0f0f0;
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
-}
-/* Responsividade */
-@media (max-width: 600px) {
-  .tabs {
-    flex-wrap: wrap;
-  }
-  .tab {
-    flex: 1 1 45%;
-    margin-bottom: 8px;
-  }
-  .flow-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .flow-buttons button {
-    width: 100%;
-  }
+  background-color: #34495e;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }

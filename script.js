@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dados dos produtos
+  // Produtos disponíveis
   const products = [
     { id: 1, name: "Smartphone", emoji: "📱", price: 1999.99 },
     { id: 2, name: "Notebook", emoji: "💻", price: 3499.90 },
@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const toConfirmBtn = document.getElementById("toConfirmBtn");
   const finishPurchaseBtn = document.getElementById("finishPurchaseBtn");
 
-  // Estado da compra
+  // Estado da compra: IDs dos produtos selecionados
   let selectedProducts = new Set();
 
-  // Criar os cards de produtos
+  // Criar os cards dos produtos
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card";
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = document.createElement("button");
     btn.textContent = "Adicionar";
     btn.setAttribute("aria-pressed", "false");
+    btn.className = "btn btn-primary";
     btn.addEventListener("click", () => {
       if (selectedProducts.has(product.id)) {
         selectedProducts.delete(product.id);
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     productsGrid.appendChild(card);
   });
 
-  // Controle das abas
+  // Controle de abas
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content.classList.toggle("active", content.id === tabId.replace("-btn", ""));
     });
 
-    // Para acessibilidade, mover foco para a aba ativa
+    // Mover foco para aba ativa para acessibilidade
     const activeTab = document.getElementById(tabId);
     if (activeTab) activeTab.focus();
   }
@@ -90,25 +91,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Navegação de fluxo de compra
+  // Links do menu no header também funcionam para mudar abas
+  document.querySelectorAll("header nav a").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const targetTab = link.getAttribute("data-tab");
+      if (targetTab) activateTab(targetTab);
+    });
+  });
+
+  // Botões navegação fluxo compra
   const backToProductsBtn = document.getElementById("backToProductsBtn");
   const backToAddressBtn = document.getElementById("backToAddressBtn");
 
-  // Formulário de endereço
+  // Formulário endereço
   const addressForm = document.getElementById("addressForm");
 
-  // Botão para ir para endereço
+  // Ir para aba endereço
   toAddressBtn.addEventListener("click", () => {
     activateTab("endereco-tab-btn");
-    validateAddressForm(); // atualiza o botão confirmar endereço
+    validateAddressForm();
   });
 
-  // Botão voltar aos produtos
+  // Voltar aos produtos
   backToProductsBtn.addEventListener("click", () => {
     activateTab("produtos-tab-btn");
   });
 
-  // Botão confirmar endereço
+  // Confirmar endereço e ir para resumo
   toConfirmBtn.addEventListener("click", () => {
     if (addressForm.checkValidity()) {
       fillSummary();
@@ -118,12 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Botão voltar ao endereço
+  // Voltar para endereço da aba confirmação
   backToAddressBtn.addEventListener("click", () => {
     activateTab("endereco-tab-btn");
   });
 
-  // Botão finalizar compra
+  // Finalizar compra
   finishPurchaseBtn.addEventListener("click", () => {
     alert("Compra finalizada! Muito obrigado pela preferência.");
     // Resetar estado
@@ -139,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     activateTab("produtos-tab-btn");
   });
 
-  // Validação do formulário e ativação do botão Confirmar endereço
+  // Validar formulário para ativar botão Confirmar endereço
   function validateAddressForm() {
     toConfirmBtn.disabled = !addressForm.checkValidity();
   }
@@ -166,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     summaryTotal.textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 
-    // Mostrar endereço formatado
+    // Formatar endereço
     const data = new FormData(addressForm);
     const addressText =
       `${data.get("name")}\n` +
