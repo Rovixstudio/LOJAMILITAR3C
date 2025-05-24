@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3 C Shop - Mega Loja Online</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <nav aria-label="Menu principal">
+    <ul>
+      <li><a href="#" data-tab="produtos-tab-btn">Produtos</a></li>
+      <li><a href="#" data-tab="endereco-tab-btn">Endereço</a></li>
+      <li><a href="#" data-tab="confirmacao-tab-btn">Confirmar</a></li>
+      <li><a href="#" data-tab="sobre-tab-btn">Sobre</a></li>
+      <li><a href="#" data-tab="contato-tab-btn">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="tabs" role="tablist" aria-label="Fluxo de compra">
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="produtos-tab" id="produtos-tab-btn" tabindex="0">🛒 Produtos</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="endereco-tab" id="endereco-tab-btn" tabindex="-1">🏠 Endereço</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="confirmacao-tab" id="confirmacao-tab-btn" tabindex="-1">✅ Confirmar</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="sobre-tab" id="sobre-tab-btn" tabindex="-1">ℹ️ Sobre</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="contato-tab" id="contato-tab-btn" tabindex="-1">📞 Contato</button>
+  </div>
+
+  <!-- Aba Produtos -->
+  <section id="produtos-tab" class="tab-content active" role="tabpanel" aria-labelledby="produtos-tab-btn">
+    <div class="products-grid" id="productsGrid"></div>
+    <div class="flow-buttons">
+      <button class="btn btn-primary" id="toAddressBtn" disabled>Continuar para Endereço →</button>
+    </div>
+  </section>
+
+  <!-- Aba Endereço -->
+  <section id="endereco-tab" class="tab-content" role="tabpanel" aria-labelledby="endereco-tab-btn" tabindex="0">
+    <form id="addressForm" novalidate>
+      <label for="name">Nome completo *</label>
+      <input type="text" id="name" name="name" required placeholder="Seu nome completo" autocomplete="name" />
+      
+      <label for="street">Rua, número, complemento *</label>
+      <input type="text" id="street" name="street" required placeholder="Rua Exemplo, 123, apto 45" autocomplete="address-line1" />
+      
+      <label for="city">Cidade *</label>
+      <input type="text" id="city" name="city" required placeholder="Sua cidade" autocomplete="address-level2" />
+      
+      <label for="state">Estado *</label>
+      <input type="text" id="state" name="state" required placeholder="Seu estado" autocomplete="address-level1" />
+      
+      <label for="zip">CEP *</label>
+      <input type="text" id="zip" name="zip" required placeholder="00000-000" pattern="\d{5}-?\d{3}" autocomplete="postal-code" />
+      
+      <label for="phone">Telefone *</label>
+      <input type="tel" id="phone" name="phone" required placeholder="(00) 00000-0000" pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}" autocomplete="tel" />
+      
+      <div class="policy">
+        <h3>Política de Devolução 📜</h3>
+        <p>Você pode devolver o produto em até 30 dias após o recebimento, desde que esteja em perfeito estado e na embalagem original. Para iniciar a devolução, entre em contato com nosso suporte.</p>
+        <p>Produtos personalizados não são passíveis de devolução.</p>
+        <p>Para mais informações, consulte nossos <a href="#" tabindex="0">Termos e Condições</a>.</p>
+      </div>
+    </form>
+    <div class="flow-buttons" style="margin-top: 10px;">
+      <button class="btn btn-secondary" id="backToProductsBtn">← Voltar aos Produtos</button>
+      <button class="btn btn-primary" id="toConfirmBtn" disabled>Confirmar Endereço →</button>
+    </div>
+  </section>
+
+  <!-- Aba Confirmação -->
+  <section id="confirmacao-tab" class="tab-content" role="tabpanel" aria-labelledby="confirmacao-tab-btn" tabindex="0">
+    <div class="summary">
+      <h3>Resumo do Pedido 🧾</h3>
+      <ul id="summaryItems"></ul>
+      <p class="total" id="summaryTotal">Total: R$ 0,00</p>
+      <h4>Endereço de entrega:</h4>
+      <p id="summaryAddress" style="white-space: pre-line; font-weight: 600; color: #34495e;"></p>
+    </div>
+    <div class="flow-buttons" style="margin-top: 30px;">
+      <button class="btn btn-secondary" id="backToAddressBtn">← Voltar ao Endereço</button>
+      <button class="btn btn-primary" id="finishPurchaseBtn">Finalizar Compra 🛒</button>
+    </div>
+  </section>
+
+  <!-- Aba Sobre -->
+  <section id="sobre-tab" class="tab-content" role="tabpanel" aria-labelledby="sobre-tab-btn" tabindex="0">
+    <div class="about-text">
+      <h2>Sobre a 3 C Shop</h2>
+      <p>A 3 C Shop é uma loja online que oferece uma ampla variedade de produtos de alta qualidade, focada em proporcionar uma experiência de compra simples, segura e agradável para você.</p>
+      <p>Nosso compromisso é entregar produtos incríveis com atendimento personalizado, garantindo a satisfação total de nossos clientes.</p>
+      <p>Explore nossas categorias e aproveite as melhores ofertas!</p>
+    </div>
+  </section>
+
+  <!-- Aba Contato -->
+  <section id="contato-tab" class="tab-content" role="tabpanel" aria-labelledby="contato-tab-btn" tabindex="0">
+    <div class="contact-info">
+      <h2>Contato</h2>
+      <p><strong>Telefone:</strong> <a href="tel:+5562991125182">+55 62 99112-5182</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/rodrigohx_12" target="_blank" rel="noopener noreferrer">@rodrigohx_12</a></p>
+      <p><strong>E-mail:</strong> <a href="mailto:rodrigomelocosta123@gmail.com">rodrigomelocosta123@gmail.com</a></p>
+      <p><strong>Criador:</strong> Rodrigo Melo Costa</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 3 C Shop. Todos os direitos reservados. Desenvolvido com 💚 por Rodrigo Melo Costa.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
